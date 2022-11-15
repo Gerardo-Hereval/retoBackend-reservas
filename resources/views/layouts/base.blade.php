@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    src="https://unpkg.com/sweetalert2@7.3.0/dist/sweetalert2.all.js"
+
 
     <title>Vive la aventura...</title>
     @vite('resources/css/app.css')
