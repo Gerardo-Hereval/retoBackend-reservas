@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\activity;
 use App\Models\reservation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class BusquedaController extends Controller
 {
@@ -40,7 +40,28 @@ class BusquedaController extends Controller
                 'reservacion_fin'=>$reservacion
             ]);
 
-        return redirect('/');
+        return redirect('reservaciones');
     }
+
+    public function show(){
+        //$reservaciones = reservation::where('reservacion_ini','>',now())->get();
+        $reservaciones = DB::table('view_reservations')->where('reservacion_ini','>=',now())->orderBy('reservacion_ini','asc')->get();
+        return view('reservaciones',['reservaciones'=>$reservaciones]);
+    }
+
+    public function create(){
+        $actividad= random_int(1,5);
+        $ocupantes= random_int(1,8);
+        $reservacion = reservation::create ([
+            'id_activity'=>$actividad,
+            'ocupantes'=>$ocupantes,
+            'reservacion_ini'=>now(),
+            'reservacion_fin'=> now()
+        ]);
+
+        return redirect('reservaciones');
+    }
+
+
 
 }

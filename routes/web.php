@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\activity;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BusquedaController;
 
@@ -15,8 +16,11 @@ use App\Http\Controllers\BusquedaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $sugerencia = activity::where('status','activo')->where('id',random_int(1,4))->get();
+    return view('welcome',['sugerencia'=>$sugerencia]);
 });
 
 Route::get('/busqueda', [BusquedaController::class,'index'])->name('busqueda');
 Route::post('/reservacion/{id}/{reservacion}/{personas}', [BusquedaController::class,'store'])->name('reservacion');
+Route::get('/reservaciones', [BusquedaController::class,'show'])->name('reservaciones');
+Route::get('/test', [BusquedaController::class,'create'])->name('test');
