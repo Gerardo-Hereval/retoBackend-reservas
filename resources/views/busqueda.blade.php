@@ -33,6 +33,8 @@
                             <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{$busqueda->titulo}}</h1>
                             <h2 class="sr-only">Informacion</h2>
                             <p class="text-2xl tracking-tight text-gray-900">${{$busqueda->precio_unitario}} por persona</p>
+                            <p class="text-2xl tracking-tight text-gray-900">${{$busqueda->precio_unitario * $reservacion->personas}} total</p>
+
                             <p class="text-2xl tracking-tight text-gray-900">Fecha: {{$reservacion->fecha}}</p>
 
                             <!-- Reviews -->
@@ -89,6 +91,6 @@
             </div>
         </div>
     </div>
-    @endforeach
+@endforeach
 
 @endsection
